@@ -7,8 +7,8 @@
   $hex2int = function($value) { return hexdec($value); };
   $str2int = function($value) { return intval($value); };
 
-  $ext = join(" ", file("http://$user:$pass@$base/Ext.html"));
-  $multicell = join(" ", file("http://$user:$pass@$base/MultiCell.html"));
+  $ext = file_get_contents("http://$user:$pass@$base/Ext.html");
+  $multicell = file_get_contents("http://$user:$pass@$base/MultiCell.html");
 
   // parse extension data
   // get number
@@ -89,6 +89,8 @@
           $fillcolor = sprintf("%f,0.1,1", $hue);
           $linecolor = "black";
           if( $i != $chain_sync[$i] ) {
+              if ($chain_sync[$i] == 255) continue;
+
               $rssi = $chain_rssi_db[$i][$chain_sync[$i]*4];
               $rssi_plain = $chain_rssi[$i][$chain_sync[$i]*4];
 
