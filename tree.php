@@ -109,13 +109,13 @@ $footer = "DECT Sync Tree";
                   $rssidb = $rssi."dBm";
                   $rssi_sum = $rssi_sum + $rssi_plain;
               }
-              $graph .= sprintf("  %s -> %s [color=\"%s\" label=<<font point-size=\"10\">%s</font>>];\n", $bs_names[$chain_sync[$i]], $bs_names[$i], $linecolor, $rssidb );
+              $graph .= sprintf("  \"%s\" -> \"%s\" [color=\"%s\" label=<<font point-size=\"10\">%s</font>>];\n", $bs_names[$chain_sync[$i]], $bs_names[$i], $linecolor, $rssidb );
           }
           if( $i == $chain_sync[$i] ) {
               $master_label = " (MASTER)";
           } else { $master_label = ""; }
 
-          $graph .= sprintf("  %s [color=\"%s\" style=filled fillcolor=\"%s\" label=<%s<br/><font point-size=\"8\">%s<br/>%s<br/>RPN%02X%s</font>>];\n", $bs_names[$i], $color, $fillcolor, $bs_names[$i], $chain_mac[$i], $chain_ip[$i], $i*4, $master_label);
+          $graph .= sprintf("  \"%s\" [color=\"%s\" style=filled fillcolor=\"%s\" label=<%s<br/><font point-size=\"8\">%s<br/>%s<br/>RPN%02X%s</font>>];\n", $bs_names[$i], $color, $fillcolor, $bs_names[$i], $chain_mac[$i], $chain_ip[$i], $i*4, $master_label);
       }
   }
 
@@ -133,8 +133,8 @@ $footer = "DECT Sync Tree";
               $fillcolor = sprintf("%f,0.1,1", $hue);
               $linecolor = "black";
 
-              $graph .= sprintf("  %s -> %s [color=\"%s\"] ;\n", $bs_names[$fpidx], $number, $color);
-              $graph .= sprintf("  %s [color=\"%s\" style=filled fillcolor=\"%s\" label=<%s<br/><font point-size=\"8\">%s<br/>%s</font>>];\n", $number, $color, $fillcolor, $number, htmlentities(utf8_decode($name)), $ipei );
+              $graph .= sprintf("  \"%s\" -> \"%s\" [color=\"%s\"] ;\n", $bs_names[$fpidx], $number, $color);
+              $graph .= sprintf("  \"%s\" [color=\"%s\" style=filled fillcolor=\"%s\" label=<%s<br/><font point-size=\"8\">%s<br/>%s</font>>];\n", $number, $color, $fillcolor, $number, htmlentities(utf8_decode($name)), $ipei );
           }
       }
   }
