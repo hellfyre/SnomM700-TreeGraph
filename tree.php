@@ -1,8 +1,19 @@
 <?php
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
-  require_once("config.php");
+  include_once("config.php");
+
+  if (!isset($location)) $location = array();
 
   parse_str(implode('&', array_slice($argv, 1)), $_REQUEST);
+
+  if ($_REQUEST['debug'] === 'dump_all' ||$_REQUEST['test'] === '1') $_REQUEST['debug'] = 3;
+  elseif ($_REQUEST['debug'] === 'dump') $_REQUEST['debug'] = 2;
+  elseif ($_REQUEST['debug'] === 'dot') $_REQUEST['debug'] = 1;
+  elseif (! is_numeric($_REQUEST['debug'])) $_REQUEST['debug'] = 0;
+
+  if (isset($_REQUEST['base'])) $base = $_REQUEST['base'];
+  if (isset($_REQUEST['user'])) $base = $_REQUEST['user'];
+  if (isset($_REQUEST['pass'])) $base = $_REQUEST['pass'];
 
   // inline helper fucntions
   $unhex   = function($value) { return substr($value, 2); };
