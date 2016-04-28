@@ -89,7 +89,6 @@
 
   $graph = sprintf('digraph {
   rankdir=LR;
-  size = "32,18";
   center=true;
   ratio=compress;
   overlap=scale;
