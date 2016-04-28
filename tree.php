@@ -61,6 +61,7 @@
   preg_match("/.*SetSyncTree\(\"(.*)\"\);.*/", $multicell, $data);
   $chain_sync = array_map($str2int, split(",", $data[1]));
 
+  $chain_size = 0;
  // get chain rssi values
   preg_match("/.*SetSyncDectRssiChain\(\"(.*)\"\);.*/", $multicell, $data);
   $rssi_tmp = split(":", $data[1]);
@@ -74,6 +75,7 @@
           $chain_rssi[$idx][$rpn] = $rssi;
         }
       }
+      $chain_size++;
     }
   }
 
@@ -105,7 +107,7 @@
   // add FP to graph
   for( $i=0 ; $i<sizeof($chain_ip); $i++ ) {
       if( $chain_ip[$i] != '0.0.0.0' ) {
-          $hue = $i/10;
+          $hue = $i/$chain_size;
           $color = sprintf("%f,1,1", $hue);
           $fillcolor = sprintf("%f,0.1,1", $hue);
           $linecolor = "black";
