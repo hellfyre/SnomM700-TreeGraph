@@ -12,8 +12,8 @@
   elseif (! is_numeric($_REQUEST['debug'])) $_REQUEST['debug'] = 0;
 
   if (isset($_REQUEST['base'])) $base = $_REQUEST['base'];
-  if (isset($_REQUEST['user'])) $base = $_REQUEST['user'];
-  if (isset($_REQUEST['pass'])) $base = $_REQUEST['pass'];
+  if (isset($_REQUEST['user'])) $user = $_REQUEST['user'];
+  if (isset($_REQUEST['pass'])) $pass = $_REQUEST['pass'];
 
   // inline helper fucntions
   $unhex   = function($value) { return substr($value, 2); };
