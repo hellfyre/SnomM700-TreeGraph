@@ -130,7 +130,7 @@
 
           $location_line = '';
           if (array_key_exists($bs_names[$i], $location)) $location_line = htmlentities(utf8_decode($location[$bs_names[$i]])) . '<br/>';
-          $graph .= sprintf("  \"%s\" [color=\"%s\" style=filled fillcolor=\"%s\" label=<%s<br/><font point-size=\"8\">%s<br/>%s<br/>%sRPN%02X%s</font>>];\n", $bs_names[$i], $color, $fillcolor, $bs_names[$i], $chain_mac[$i], $location_line, $chain_ip[$i], $i*4, $master_label);
+          $graph .= sprintf("  \"%s\" [color=\"%s\" style=filled fillcolor=\"%s\" label=<%s<br/><font point-size=\"8\">%s<br/>%s%s<br/>RPN%02X%s</font>>];\n", $bs_names[$i], $color, $fillcolor, $bs_names[$i], $chain_mac[$i], $location_line, $chain_ip[$i], $i*$chain_rpn_interval, $master_label);
       }
   }
 
