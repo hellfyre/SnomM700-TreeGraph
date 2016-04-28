@@ -81,6 +81,12 @@
   preg_match("/.*SetSyncBaseNameChain\(\"(.*)\"\);.*/", $multicell, $data);
   $bs_names = array_map('trim', split(",", $data[1]));
 
+  // get RPN interval via maximum chain size
+  preg_match("/.*SetMaxNoInMacChain\(\"(.*)\"\);.*/", $multicell, $data);
+  $chain_rpn_interval = 4;
+  if ($data[1] == '127') $chain_rpn_interval = 2;
+  elseif ($data[1] == '254') $chain_rpn_interval = 1;
+
   $graph = sprintf('digraph {
   rankdir=LR;
   size = "32,18";
@@ -107,8 +113,8 @@
           if( $i != $chain_sync[$i] ) {
               if ($chain_sync[$i] == 255) continue;
 
-              $rssi = $chain_rssi_db[$i][$chain_sync[$i]*4];
-              $rssi_plain = $chain_rssi[$i][$chain_sync[$i]*4];
+              $rssi = $chain_rssi_db[$i][$chain_sync[$i]*$chain_rpn_interval];
+              $rssi_plain = $chain_rssi[$i][$chain_sync[$i]*$chain_rpn_interval];
 
               if( $rssi == 0 ) {
                   $rssidb = "unknown";
