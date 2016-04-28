@@ -165,20 +165,23 @@
     fontsize=12;
 }', $footer, date("D M j G:i:s T Y"), $rssi_sum_text);
 
-  if($_REQUEST['test'] == '1') {
+  if($_REQUEST['debug'] > 0) {
     header("Content-type: text");
-    echo $graph."\n";
-    var_dump($bs_names);
-    var_dump($chain_sync);
-    echo "\n";
-    var_dump($rssi_tmp);
-    var_dump($chain_rssi_db);
-    var_dump($ext_number);
-    var_dump($ext_name);
-    var_dump($ext_ipei);
-    var_dump($ext_fpidx);
-    var_dump($ext_status);
-
+    echo $graph . "\n";
+    if($_REQUEST['debug'] > 1) {
+      var_dump($bs_names);
+      var_dump($chain_sync);
+      echo "\n";
+      if($_REQUEST['debug'] > 2) {
+        var_dump($rssi_tmp);
+        var_dump($chain_rssi_db);
+        var_dump($ext_number);
+        var_dump($ext_name);
+        var_dump($ext_ipei);
+        var_dump($ext_fpidx);
+        var_dump($ext_status);
+      }
+    }
   } else {
     header("Content-type: image/png");
     //system("echo ".escapeshellarg($graph)." | fdp -Tpng");
