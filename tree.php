@@ -2,6 +2,8 @@
   error_reporting(E_ERROR | E_WARNING | E_PARSE);
   require_once("config.php");
 
+  parse_str(implode('&', array_slice($argv, 1)), $_REQUEST);
+
   // inline helper fucntions
   $unhex   = function($value) { return substr($value, 2); };
   $hex2int = function($value) { return hexdec($value); };
